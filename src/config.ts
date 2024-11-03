@@ -95,6 +95,7 @@ export const aboutPageContent: AboutPageContent = {
       alt: "Professional Picture",
     },
   },
+
   work: {
     description: `I have experience in data engineering and AI, working with diverse tools and technologies. Here are some of my roles and accomplishments.`,
     items: [
@@ -114,6 +115,28 @@ export const aboutPageContent: AboutPageContent = {
       },
     ],
   },
+
+  studies: {
+    description: `I have experience in data engineering and AI, working with diverse tools and technologies. Here are some of my roles and accomplishments.`,
+    items: [
+      {
+        title: "MSc. Artificial Intelligence",
+        company: {
+          name: "University of Essex Online",
+        },
+        date: "April 2024 - Present",
+      },
+      {
+        title: "BSc. Mathematical Engineering in Data Science",
+        company: {
+          name: "Universitat Pompeu Fabra",
+        },
+        date: "September 2019 - July 2023",
+      },
+    ],
+  },
+  
+
   connect: {
     description: `I'm always open to connecting with others in the tech and AI communities. Reach out to me on any of the platforms below.`,
     links: socialLinks,

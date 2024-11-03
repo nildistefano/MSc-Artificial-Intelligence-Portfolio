@@ -57,10 +57,17 @@ export type AboutPageContent = {
       alt: string;
     };
   };
+
   work: {
     description: string;
     items: ResumeItem[];
   };
+
+  studies: {
+    description: string;
+    items: ResumeItem[];
+  };
+  
   connect: {
     description: string;
     links: SocialLink[];
