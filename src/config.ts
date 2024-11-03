@@ -7,6 +7,9 @@ import type {
   ModulePageContent,
 } from "./types/config";
 
+export const pageTitle = "/MSc-Artificial-Intelligence-Portfolio/"
+
+
 export const identity: Identity = {
   name: "Nil Distefano",
   logo: "/MSc-Artificial-Intelligence-Portfolio/NilDistefanoBW.jpg",

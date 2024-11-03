@@ -1,7 +1,7 @@
 ---
 import { Image } from "astro:assets";
 import { Icon } from "astro-icon/components";
-import { navBarLinks, identity } from "../config";
+import { navBarLinks, identity, pageTitle } from "../config";
 import type { SEOInfo } from "../types/config";
 
 interface Props {
@@ -64,7 +64,7 @@ const { seo } = Astro.props;
       <div
         class="px-6 py-6 max-w-2xl mx-auto flex items-center justify-between"
       >
-        <a href="/" class="justify-content: center">
+        <a href={pageTitle} class="justify-content: center">
           <Image src="/MSc-Artificial-Intelligence-Portfolio/logo.jpeg"
           alt="logo"
           width={50}
