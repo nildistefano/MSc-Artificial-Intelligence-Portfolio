@@ -127,6 +127,22 @@ export const modulesPageContent: ModulePageContent = {
   },
   subtitle: "Master's Modules Overview",
   modules: [
-    // We'll discuss specific module content later.
+    {
+      title: "Machine Learning",
+      description: "A deep dive into the world of machine learning.",
+      image: "/machine-learning.jpg", // Replace with the actual image path
+      year: "2023",
+      projects: [
+        {
+          title: "Predictive Model for Customer Churn",
+          description: "Built a predictive model to identify customers at risk of churning.",
+          image: "/churn-model.png", // Replace with the actual image path
+          url: "https://github.com/nildistefano/churn-model",
+          year: "2001"
+        },
+        // ... other projects
+      ],
+    },
+    // ... other modules
   ],
 };
