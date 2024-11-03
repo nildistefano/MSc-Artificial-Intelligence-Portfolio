@@ -1,12 +1,12 @@
 ---
-import { modulesPageContent } from "../../config";
+import { aboutPageContent, modulesPageContent } from "../../config";
 import ProjectCard from "../../components/ProjectCard.astro";
 import Layout from "../../layouts/Layout.astro";
 
 const { seo, subtitle, modules } = modulesPageContent;
 ---
 
-<Layout seo={seo}>
+<Layout seo={aboutPageContent.seo}>
   <h1>{subtitle}</h1>
   {modules.map((module) => (
     <section>
@@ -22,3 +22,4 @@ const { seo, subtitle, modules } = modulesPageContent;
     </section>
   ))}
 </Layout>
+

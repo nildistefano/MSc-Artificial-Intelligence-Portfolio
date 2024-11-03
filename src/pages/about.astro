@@ -1,10 +1,10 @@
 ---
-import { Image } from "astro:assets";
 import Layout from "../layouts/Layout.astro";
 import { aboutPageContent } from "../config";
 import ResumeItem from "../components/ResumeItem.astro";
 import { Markdown } from "@astropub/md";
 import SocialLinkBox from "../components/SocialLinkBox.astro";
+import { Image } from "astro:assets";
 ---
 
 <Layout seo={aboutPageContent.seo}>
@@ -13,11 +13,18 @@ import SocialLinkBox from "../components/SocialLinkBox.astro";
     <h1 class="font-bold text-3xl mb-1">About</h1>
     </section>
   
-  <section class="mt-5 max-w-2xl mx-auto px-6">
-    <div class="mb-14">
-      <Markdown of={aboutPageContent.about.description} />
-    </div>
-  </section>
+    <section class="mt-5 max-w-2xl mx-auto px-6">
+      <div class="mb-14">
+        <Markdown of={aboutPageContent.about.description} />
+      </div>
+      <div class="flex justify-center">
+        <Image src="/MSc-Artificial-Intelligence-Portfolio/graduation.jpeg"
+          alt="Graduation"
+          width={250}
+          height={250}
+          class="rounded-full" />
+      </div>
+    </section>
 
   <section class="mt-20 max-w-2xl mx-auto px-6">
     <h2 class="mb-8 sm:mb-0 opacity-60">Work</h2>
@@ -32,13 +39,13 @@ import SocialLinkBox from "../components/SocialLinkBox.astro";
   </section>
 
   <section class="mt-20 max-w-2xl mx-auto px-6">
-    <h2 class="mb-8 sm:mb-0 opacity-60">Work</h2>
+    <h2 class="mb-8 sm:mb-0 opacity-60">Studies</h2>
       <div>
         <div class="mb-6">
           <Markdown of={aboutPageContent.studies.description} />
         </div>
         <div class="grid grid-cols-1 gap-4">
-          {aboutPageContent.work.items.map((item) => <ResumeItem {...item} />)}
+          {aboutPageContent.studies.items.map((item) => <ResumeItem {...item} />)}
         </div>
       </div>
   </section>

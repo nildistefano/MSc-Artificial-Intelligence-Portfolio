@@ -58,7 +58,7 @@ export const homePageContent: HomePageContent = {
   },
   role: "Data Engineer & AI Enthusiast",
   description:
-    "I'm Nil Distefano, a Data Engineer with a passion for artificial intelligence, currently building this portfolio as part of my Master's degree in AI.",
+    "I'm Nil Distefano, a Data Engineer specializing artificial intelligence, currently building this portfolio as part of my Master's degree in AI.",
   socialLinks: socialLinks,
   links: [
     {
