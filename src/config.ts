@@ -97,7 +97,7 @@ export const aboutPageContent: AboutPageContent = {
   },
 
   work: {
-    description: `I have experience in data engineering and AI, working with diverse tools and technologies. Here are some of my roles and accomplishments.`,
+    description: `Since embarking on my professional journey in 2023, I've gained valuable experience in two full-time roles, solidifying my skills in data science and AI.  `,
     items: [
       {
         title: "Data Engineer & AI Specialist",
@@ -117,7 +117,7 @@ export const aboutPageContent: AboutPageContent = {
   },
 
   studies: {
-    description: `I have experience in data engineering and AI, working with diverse tools and technologies. Here are some of my roles and accomplishments.`,
+    description: `After completing my undergraduate degree, I pursued further education while working full-time.`,
     items: [
       {
         title: "MSc. Artificial Intelligence",
