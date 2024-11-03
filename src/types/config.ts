@@ -39,8 +39,6 @@ export type ResumeItem = {
   title: string;
   company: {
     name: string;
-    image: string;
-    url: string;
   };
   date: string;
 };

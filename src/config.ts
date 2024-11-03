@@ -9,22 +9,22 @@ import type {
 
 export const identity: Identity = {
   name: "Nil Distefano",
-  logo: "/MSc-Artificial-Intelligence-Portfolio/profile.jpg",
+  logo: "/MSc-Artificial-Intelligence-Portfolio/NilDistefanoBW.jpg",
   email: "disnil7@gmail.com",
 };
 
 export const navBarLinks: NavBarLink[] = [
   {
     title: "Home",
-    url: "",
+    url: "/MSc-Artificial-Intelligence-Portfolio/",
   },
   {
     title: "About",
-    url: "about",
+    url: "/MSc-Artificial-Intelligence-Portfolio/about",
   },
   {
     title: "Master's Modules",
-    url: "modules",
+    url: "/MSc-Artificial-Intelligence-Portfolio/modules",
   },
 ];
 
@@ -36,10 +36,16 @@ export const socialLinks: SocialLink[] = [
     external: true,
   },
   {
+    title: "LinkedIn",
+    url: "https://www.linkedin.com/in/nildistefano/",
+    icon: "mdi:linkedin",
+    external: true,
+  },
+  {
     title: "Mail",
     url: "mailto:disnil7@gmail.com",
     icon: "mdi:email",
-  },
+  }
 ];
 
 // Home (/)
@@ -76,16 +82,16 @@ export const aboutPageContent: AboutPageContent = {
   },
   subtitle: "A little about myself",
   about: {
-    description: `
-I'm Nil Distefano, a Data Engineer specializing in AI integration and development. Currently, I'm pursuing a Master's in Artificial Intelligence at the University of Essex online, and this portfolio showcases projects and research related to my studies.
-<br/><br/>
-In addition to my professional and academic interests, I enjoy playing basketball and the drums in my free time. My background includes a degree in mathematics and data science, which fuels my current focus on AI-driven projects.`,
+    description: `I'm Nil Distefano, a dedicated Data Engineer with a passion for artificial intelligence. 
+      I'm currently pursuing a Master's degree in Artificial Intelligence at the University of Essex Online. 
+      My expertise lies in data engineering, machine learning, and Python programming. 
+      I'm committed to staying up-to-date with the latest advancements in the field and utilizing data-driven approaches to solve complex problems.`,
     image_l: {
-      url: "/profile-1.jpg",
+      url: "/MSc-Artificial-Intelligence-Portfolio/profile-1.jpg",
       alt: "Profile Picture",
     },
     image_r: {
-      url: "/profile-2.jpg",
+      url: "/MSc-Artificial-Intelligence-Portfolio/profile-2.jpg",
       alt: "Professional Picture",
     },
   },
@@ -93,22 +99,18 @@ In addition to my professional and academic interests, I enjoy playing basketbal
     description: `I have experience in data engineering and AI, working with diverse tools and technologies. Here are some of my roles and accomplishments.`,
     items: [
       {
-        title: "Data Engineer",
+        title: "Data Engineer & AI Specialist",
         company: {
-          name: "Current Company",
-          image: "/logo.webp",
-          url: "https://current-company.com",
+          name: "Veolia group, AGBAR - Synectic",
         },
-        date: "2023 - Present",
+        date: "August 2024 - Present",
       },
       {
-        title: "AI Development Intern",
+        title: "Junior Data Analyst",
         company: {
-          name: "AI Lab",
-          image: "/logo.webp",
-          url: "https://ai-lab.com",
+          name: "CNEX AIE",
         },
-        date: "2021 - 2023",
+        date: "August 2023 - July 2024",
       },
     ],
   },
