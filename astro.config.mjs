@@ -5,6 +5,8 @@ import { remarkReadingTime } from "./remark-reading-time.mjs";
 
 // https://astro.build/config
 export default defineConfig({
+  site: 'https://nildistefano.github.io',
+  base: 'MSc-Artificial-Intelligence-Portfolio',
   integrations: [tailwind(), icon()],
   output: "static",  // Switch to 'static' mode for GitHub Pages compatibility
   markdown: {
