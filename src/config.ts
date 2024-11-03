@@ -9,22 +9,22 @@ import type {
 
 export const identity: Identity = {
   name: "Nil Distefano",
-  logo: "/profile.jpg",
+  logo: "/MSc-Artificial-Intelligence-Portfolio/profile.jpg",
   email: "disnil7@gmail.com",
 };
 
 export const navBarLinks: NavBarLink[] = [
   {
     title: "Home",
-    url: "/",
+    url: "",
   },
   {
     title: "About",
-    url: "/about",
+    url: "about",
   },
   {
     title: "Master's Modules",
-    url: "/modules",
+    url: "modules",
   },
 ];
 
@@ -57,11 +57,11 @@ export const homePageContent: HomePageContent = {
   links: [
     {
       title: "About Me",
-      url: "/about",
+      url: "about",
     },
     {
       title: "Master's Modules",
-      url: "/modules",
+      url: "modules",
     },
   ],
 };
