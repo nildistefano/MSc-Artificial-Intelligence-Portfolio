@@ -149,22 +149,23 @@ export const aboutPageContent: AboutPageContent = {
 // Modules (/modules)
 export const modulesPageContent: ModulePageContent = {
   seo: {
-    title: "Master's Modules | Nil Distefano",
-    description: "Explore detailed content from each module in my Master's program in AI.",
+    title: "Modules | Nil Distefano",
+    description:
+      "Modules undertaken during the MSc",
     image: identity.logo,
   },
-  subtitle: "Master's Modules Overview",
+  subtitle: "Modules",
   modules: [
     {
       title: "Machine Learning",
       description: "A deep dive into the world of machine learning.",
-      image: "/machine-learning.jpg", // Replace with the actual image path
+      image: "/machine-learning.jpg",
       year: "2023",
       projects: [
         {
           title: "Predictive Model for Customer Churn",
           description: "Built a predictive model to identify customers at risk of churning.",
-          image: "/churn-model.png", // Replace with the actual image path
+          image: "/churn-model.png",
           url: "https://github.com/nildistefano/churn-model",
           year: "2001"
         },
