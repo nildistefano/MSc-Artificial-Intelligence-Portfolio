@@ -1,0 +1,24 @@
+---
+import { modulesPageContent } from "../../config";
+import ProjectCard from "../../components/ProjectCard.astro";
+import Layout from "../../layouts/Layout.astro";
+
+const { seo, subtitle, modules } = modulesPageContent;
+---
+
+<Layout seo={seo}>
+  <h1>{subtitle}</h1>
+  {modules.map((module) => (
+    <section>
+      <h2>{module.title}</h2>
+      <p>{module.description}</p>
+      <img src={module.image} alt={`${module.title} module image`} />
+
+      <div>
+        {module.projects.map((project) => (
+          <ProjectCard {...project} />
+        ))}
+      </div>
+    </section>
+  ))}
+</Layout>
