@@ -41,7 +41,7 @@ if (!module) {
         <div class="grid grid-cols-1 gap-6">
           {projects.map((project) => (
             <a
-              href={`${basePath}/modules/${project.slug}`}
+              href={`${basePath}/modules/${project.data.module}/${project.data.project}`}
               class="block border border-white rounded-lg shadow hover:shadow-md transition-shadow p-4 text-gray-200"
             >
               <h3 class="font-medium text-lg">{project.data.title}</h3>
