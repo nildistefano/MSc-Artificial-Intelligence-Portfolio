@@ -1,0 +1,28 @@
+---
+import Layout from "../../layouts/Layout.astro";
+import { modulesPageContent } from "../../config";
+
+// Use the modules directly from the modulesPageContent
+const modules = modulesPageContent.modules;
+const basePath = '/MSc-Artificial-Intelligence-Portfolio';
+---
+
+<Layout seo={modulesPageContent.seo}>
+  <section class="mt-10 max-w-2xl mx-auto px-6">
+    <h1 class="font-bold text-3xl mb-1">Modules</h1>
+    <p class="mb-14">{modulesPageContent.subtitle}</p>
+
+    <div class="flex flex-col gap-6">
+      {modules.map((module) => (
+        <a
+          href={`${basePath}/modules/${module.slug}`}
+          class="block border border-white rounded-lg shadow hover:shadow-md transition-shadow p-4 text-gray-200"
+        >
+          <h3 class="font-medium text-lg">{module.title}</h3>
+          <p class="text-sm mt-2">{module.description}</p>
+          <p class="text-sm font-semibold mt-4 text-gray-400">{module.month} {module.year}</p>
+        </a>
+      ))}
+    </div>
+  </section>
+</Layout>

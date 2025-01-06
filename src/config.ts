@@ -4,7 +4,7 @@ import type {
   Identity,
   AboutPageContent,
   HomePageContent,
-  ModulePageContent,
+  ModulesPageContent,
 } from "./types/config";
 
 export const pageTitle = "/MSc-Artificial-Intelligence-Portfolio/"
@@ -147,31 +147,32 @@ export const aboutPageContent: AboutPageContent = {
 };
 
 // Modules (/modules)
-export const modulesPageContent: ModulePageContent = {
+export const modulesPageContent: ModulesPageContent = {
   seo: {
-    title: "Modules | Nil Distefano",
-    description:
-      "Modules undertaken during the MSc",
-    image: identity.logo,
+    title: "Modules",
+    description: "List of modules",
+    image: ""
   },
-  subtitle: "Modules",
+  subtitle: "Explore the modules in detail.",
   modules: [
     {
       title: "Machine Learning",
-      description: "A deep dive into the world of machine learning.",
-      image: "/machine-learning.jpg",
-      year: "2023",
+      description: "This Machine Learning module provides a practical, hands-on introduction to machine learning concepts, algorithms, and frameworks, emphasizing real-world data analytics, systematic implementation, and the ethical, professional, and collaborative aspects of deploying machine learning solutions.",
+      slug: "machine-learning",
+      year: "2024",
+      month: "October",
       projects: [
         {
-          title: "Predictive Model for Customer Churn",
-          description: "Built a predictive model to identify customers at risk of churning.",
-          image: "/churn-model.png",
-          url: "https://github.com/nildistefano/churn-model",
-          year: "2001"
+          title: "Project 1",
+          description: "Description of Project 1",
+          link: "https://example.com/project1",
         },
-        // ... other projects
+        {
+          title: "Project 2",
+          description: "Description of Project 2",
+          link: "https://example.com/project2",
+        },
       ],
-    },
-    // ... other modules
+    }
   ],
 };

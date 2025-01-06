@@ -1,0 +1,54 @@
+---
+import Layout from "../../layouts/Layout.astro";
+import { modulesPageContent } from "../../config";
+import { getCollection } from "astro:content";
+
+// Get all available modules for dynamic routing
+export async function getStaticPaths() {
+  const modules = modulesPageContent.modules;
+  const paths = modules.map((module) => ({
+    params: { slug: module.slug },
+  }));
+
+  return paths;
+}
+
+const basePath = '/MSc-Artificial-Intelligence-Portfolio';
+
+const { slug } = Astro.params;
+
+const allProjects = await getCollection("projects");
+
+const projects = allProjects
+  .filter((project: { data: { module: string; }; }) => project.data.module === slug)
+  .sort((a: { data: { unit: number; }; }, b: { data: { unit: number; }; }) => b.data.unit - a.data.unit);
+
+
+// Find the module that matches the current slug
+const module = modulesPageContent.modules.find((module) => module.slug === slug);
+
+// If module is not found, redirect to the modules list page (or you can handle it differently)
+if (!module) {
+  return Astro.redirect('/modules');
+}
+
+---
+
+<Layout seo={{ title: module.title, description: module.description, image: ""}}>
+    <section class="mt-10 max-w-4xl mx-auto px-6">
+        <h1 class="font-bold text-3xl mb-4">{module.title}</h1>
+    
+        <div class="grid grid-cols-1 gap-6">
+          {projects.map((project: { slug: any; data: { title: unknown; description: unknown; unit: unknown; }; }) => (
+            <a
+              href={`${basePath}/modules/${project.slug}`}
+              class="block border border-white rounded-lg shadow hover:shadow-md transition-shadow p-4 text-gray-200"
+            >
+              <h3 class="font-medium text-lg">{project.data.title}</h3>
+              <p class="text-sm mt-2">{project.data.description}</p>
+              <p class="text-sm font-semibold mt-4 text-gray-400">Unit {project.data.unit}</p>
+            </a>
+          ))}
+        </div>
+      </section>
+</Layout>

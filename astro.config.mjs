@@ -1,15 +1,21 @@
 import { defineConfig } from "astro/config";
 import tailwind from "@astrojs/tailwind";
 import icon from "astro-icon";
-import { remarkReadingTime } from "./remark-reading-time.mjs";
+import remarkMath from "remark-math";
+import rehypeKatex from "rehype-katex";
+import mdx from '@astrojs/mdx';
 
-// https://astro.build/config
 export default defineConfig({
   site: 'https://nildistefano.github.io',
-  base: 'MSc-Artificial-Intelligence-Portfolio',
-  integrations: [tailwind(), icon()],
-  output: "static",  // Switch to 'static' mode for GitHub Pages compatibility
-  markdown: {
-    remarkPlugins: [remarkReadingTime],
-  },
+  base: '/MSc-Artificial-Intelligence-Portfolio/',
+  integrations: [
+    tailwind(),
+    icon(),
+    mdx({
+      remarkPlugins: [remarkMath],
+      rehypePlugins: [rehypeKatex],
+    }),
+  ],
+  output: "static",
 });
+

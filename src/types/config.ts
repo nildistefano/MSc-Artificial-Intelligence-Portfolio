@@ -1,3 +1,5 @@
+import { defineCollection, z } from "astro:content";
+
 export type NavBarLink = {
   title: string;
   url: string;
@@ -74,14 +76,6 @@ export type AboutPageContent = {
   };
 };
 
-export type Project = {
-  title: string;
-  description: string;
-  image: string;
-  year: string;
-  url: string;
-};
-
 export type ProjectPageContent = {
   seo: SEOInfo;
   subtitle: string;
@@ -93,18 +87,29 @@ export type BlogPageContent = {
   subtitle: string;
 };
 
-// New 'Module' type to hold module-specific information
+export type Project = {
+  title: string;
+  description: string;
+  link: string; 
+};
+
 export type Module = {
   title: string;
   description: string;
-  image: string;
+  slug: string;
   year: string;
+  month: string;
   projects: Project[];
 };
 
-// Updated 'ModulePageContent' type to use an array of 'Module'
-export type ModulePageContent = {
+export type ModulesPageContent = {
   seo: SEOInfo;
   subtitle: string;
   modules: Module[];
+};
+
+export type ModulePageContent = {
+  seo: SEOInfo;
+  subtitle: string;
+  modules: Project[];
 };

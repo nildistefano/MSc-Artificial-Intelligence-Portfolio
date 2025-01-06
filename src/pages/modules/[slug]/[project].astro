@@ -1,0 +1,48 @@
+---
+import { type CollectionEntry, getCollection } from 'astro:content';
+import Layout from "../../../layouts/Layout.astro"; 
+import { modulesPageContent } from "../../../config";
+import { render } from 'astro:content';
+
+// Get all available modules for dynamic routing
+export async function getStaticPaths() {
+  const projects = await getCollection('projects');
+  return projects.map((project: { data: { module: string; project: string; }; }) => ({
+    params: { slug: project.data.module, project: project.data.project }, 
+    props: project,  
+  }));
+}
+
+type Props = CollectionEntry<'projects'>;
+
+const project = Astro.props; // The specific project
+
+const module = modulesPageContent.modules.find((module) => module.slug === project.data.module);
+
+const post = Astro.props;
+const { Content } = await render(post);
+
+
+if (!module) {
+  return Astro.redirect('/modules');
+}
+
+---
+
+<link
+    rel="stylesheet"
+    href="https://cdn.jsdelivr.net/npm/katex@0.15.2/dist/katex.min.css"
+    integrity="sha384-MlJdn/WNKDGXveldHDdyRP1R4CTHr3FeuDNfhsLPYrq2t0UBkUdK2jyTnXPEK1NQ"
+    crossorigin="anonymous"
+/>
+
+<Layout seo={{ title: module.title, description: module.description, image: "" }}>
+  <section class="mt-10 max-w-4xl mx-auto px-6">
+    <h1 class="font-bold text-3xl mb-4">{project.data.title}</h1>
+    <p class="text-sm font-semibold mt-4 text-gray-400">{project.data.date}</p>
+    
+    <div class="mt-6 prose prose-invert">
+      <Content />
+    </div>
+  </section>
+</Layout>

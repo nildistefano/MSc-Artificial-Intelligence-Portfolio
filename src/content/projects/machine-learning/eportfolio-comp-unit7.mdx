@@ -1,0 +1,78 @@
+---
+title: "Perceptron Activities"
+description: "Unit 7 e-Portfolio Activity"
+module: "machine-learning"
+project: "eportfolio-comp-unit7"
+date: "2025-01-01"
+unit: 7
+---
+
+Check this code out!
+
+```py
+import numpy as np
+
+def sum_func(inputs, weights):
+    return inputs.dot(weights)
+
+def step_function(value):
+    return 1 if value >= 1 else 0
+
+def cal_output(instance, weights):
+    return step_function(instance.dot(weights))
+
+def train(inputs, outputs, weights, learning_rate):
+    total_error_value = 1
+    while total_error_value != 0:
+        total_error_value = 0
+        for i in range(len(outputs)):
+            prediction = cal_output(inputs[i], weights)
+            error = abs(outputs[i] - prediction)
+            total_error_value += error
+            if error > 0:
+                weights += learning_rate * inputs[i] * error
+    return weights
+
+def sigmoid(value):
+    return 1 / (1 + np.exp(-value))
+
+def sigmoid_derivative(value):
+    return value * (1 - value)
+
+# Exercise 1 Inputs
+inputs1 = np.array([45, 25])
+weights1 = np.array([0.7, 0.1])
+s_prob1 = sum_func(inputs1, weights1)
+step_result1 = step_function(s_prob1)
+
+weights1 = np.array([-0.7, 0.1])
+s_prob2 = sum_func(inputs1, weights1)
+step_result2 = step_function(s_prob2)
+
+# Exercise 2 Inputs
+inputs2 = np.array([[0, 0], [0, 1], [1, 0], [1, 1]])
+outputs2 = np.array([0, 0, 0, 1])
+weights2 = np.array([0.0, 0.0])
+learning_rate = 0.1
+
+weights2 = train(inputs2, outputs2, weights2, learning_rate)
+
+# Exercise 3 Inputs
+inputs3 = np.array([[0, 0], [0, 1], [1, 0], [1, 1]])
+outputs3 = np.array([[0], [1], [1], [0]])
+weights_0 = np.array([[-0.424, -0.740, -0.961], [0.358, -0.577, -0.469]])
+weights_1 = np.array([[-0.017], [-0.893], [0.148]])
+
+input_layer = inputs3
+hidden_layer = sigmoid(np.dot(input_layer, weights_0))
+output_layer = sigmoid(np.dot(hidden_layer, weights_1))
+error_output_layer = outputs3 - output_layer
+
+average_error = np.mean(abs(error_output_layer))
+
+delta_output = error_output_layer * sigmoid_derivative(output_layer)
+delta_hidden_layer = np.dot(delta_output, weights_1.T) * sigmoid_derivative(hidden_layer)
+
+weights_1 += np.dot(hidden_layer.T, delta_output) * learning_rate
+weights_0 += np.dot(input_layer.T, delta_hidden_layer) * learning_rate
+```

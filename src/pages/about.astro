@@ -2,7 +2,6 @@
 import Layout from "../layouts/Layout.astro";
 import { aboutPageContent } from "../config";
 import ResumeItem from "../components/ResumeItem.astro";
-import { Markdown } from "@astropub/md";
 import SocialLinkBox from "../components/SocialLinkBox.astro";
 import { Image } from "astro:assets";
 ---
@@ -15,7 +14,7 @@ import { Image } from "astro:assets";
   
     <section class="mt-5">
       <div class="mb-14">
-        <Markdown of={aboutPageContent.about.description} />
+        {aboutPageContent.about.description}
       </div>
       <div class="flex justify-center">
         <Image src="/MSc-Artificial-Intelligence-Portfolio/graduation.jpeg"
@@ -30,7 +29,7 @@ import { Image } from "astro:assets";
     <h2 class="mb-8 sm:mb-0 opacity-60">Work</h2>
       <div>
         <div class="mb-6">
-          <Markdown of={aboutPageContent.work.description} />
+          {aboutPageContent.work.description}
         </div>
         <div class="grid grid-cols-1 gap-4">
           {aboutPageContent.work.items.map((item) => <ResumeItem {...item} />)}
@@ -42,7 +41,7 @@ import { Image } from "astro:assets";
     <h2 class="mb-8 sm:mb-0 opacity-60">Studies</h2>
       <div>
         <div class="mb-6">
-          <Markdown of={aboutPageContent.studies.description} />
+          {aboutPageContent.studies.description}
         </div>
         <div class="grid grid-cols-1 gap-4">
           {aboutPageContent.studies.items.map((item) => <ResumeItem {...item} />)}
