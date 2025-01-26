@@ -7,7 +7,9 @@ date: "2025-01-01"
 unit: 5
 ---
 
-# Pathological Test Results
+This simple exercise shows the calculation of the Jaccard coefficient in a sample dataset.
+
+## Pathological Test Results
 
 The table shows the pathological test results for three individuals.
 
@@ -17,7 +19,7 @@ The table shows the pathological test results for three individuals.
 | Mary  | F      | Y     | N     | P      | A      | P      | N      |
 | Jim   | M      | Y     | P     | N      | N      | N      | A      |
 
-# Jaccard Coefficient Calculations
+## Jaccard Coefficient Calculations
 
 Given:
 $$
@@ -25,56 +27,53 @@ Jaccard(A, B) = \frac{ \text{Number of Common Positive Indicators}}{\text{Total 
 $$
 
 
-## Pair (Jack, Mary)
+### Pair (Jack, Mary)
 
-### Difference of observations in both:  
+#### Difference of observations in both:  
 $$
 (Jack \cap Mary) = \{ \text{Test-3} \} = 1
 $$
 
-### Total Attributes:
+#### Total Attributes:
 $$
 (Jack \cup Mary) = \{ \text{Fever, Cough, Test-3} \} = 3
 $$
 
-
-### Jaccard Coefficient:
+#### Jaccard Coefficient:
 $$
     J(Jack, Mary) = \frac{1}{3} = 0.33
 $$
 
-## Pair (Jack, Jim)
+### Pair (Jack, Jim)
 
-### Difference of observations in both:  
+#### Difference of observations in both:  
 $$
 (Jack \cap Jim) = \{ \text{Cough, Test-1} \} = 2
 $$
 
-### Total Attributes:
+#### Total Attributes:
 $$
 (Jack \cup Jim) = \{ \text{Fever, Cough, Test-1} \} = 3
 $$
 
-
-### Jaccard Coefficient:
+#### Jaccard Coefficient:
 $$
     J(Jack, Jim) = \frac{2}{3} = 0.67
 $$
 
-## Pair (Jim, Mary)
+### Pair (Jim, Mary)
 
-### Difference of observations in both:  
+#### Difference of observations in both:  
 $$
 (Jim \cap Mary) = \{ \text{Cough, Test-1} \} = 2
 $$
 
-### Total Attributes:
+#### Total Attributes:
 $$
 (Jim \cup Mary) = \{ \text{Fever, Cough, Test-1, Test-2, Test-3, Test-4} \} = 6
 $$
 
-
-### Jaccard Coefficient:
+#### Jaccard Coefficient:
 $$
     J(Jim, Mary) = \frac{1}{6} = 0.17
 $$

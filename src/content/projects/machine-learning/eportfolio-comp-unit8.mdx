@@ -7,31 +7,31 @@ date: "2025-01-01"
 unit: 8
 ---
 
-# Simple Gradient Descent Cost Function Exercise
+## Simple Gradient Descent Cost Function Exercise
 
 In this gradient descent exercise, we closely examine the effects of changing parameter values in a simple gradient descent optimization process. Specifically, we fit a linear model to a set of 2-dimensional points using gradient descent to minimize the cost function.
 
-## Parameter Observations
+### Parameter Observations
 
-### Iterations
+#### Iterations
 
 The number of iterations determines how many times the algorithm updates the model parameters (slope and intercept). Increasing the number of iterations allows the gradient descent algorithm more time to converge towards the global minimum of the cost function. With insufficient iterations, the algorithm may terminate prematurely, leading to an under-fitted model that does not adequately capture the underlying data pattern.
 
 However, excessive iterations may result in redundant computations, particularly when the model parameters have already converged to near-optimal values. Therefore, it is crucial to choose an appropriate number of iterations to balance computational efficiency and model performance.
 
-### Learning Rate
+#### Learning Rate
 
 The learning rate is a crucial hyperparameter that dictates the size of the steps taken towards minimizing the cost function during each iteration. A **small learning rate** ensures that updates to the model parameters are gradual and steady, promoting a stable convergence towards the global minimum. However, this may require a large number of iterations, potentially prolonging the optimization process.
 
 Conversely, a **large learning rate** accelerates convergence by taking larger steps, reducing the number of iterations needed. However, this approach risks overshooting the minimum or causing oscillations around it, which can lead to divergence or suboptimal convergence. Properly tuning the learning rate is vital to achieving a balance between speed and stability.
 
-## Conclusion
+### Conclusion
 
 Achieving an optimal balance between the number of iterations and the learning rate is critical for effective gradient descent optimization. Insufficient iterations or an excessively large learning rate can hinder convergence, while too many iterations or an overly small learning rate may lead to inefficient optimization. Careful calibration of these parameters is essential for ensuring both the accuracy and efficiency of the gradient descent algorithm.
 
 
 
-## Code:
+### Code
 
 ```python
 import numpy as np

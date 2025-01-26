@@ -1,0 +1,212 @@
+---
+title: "Neural Network Model for Object Recognition Using CIFAR-10"
+description: "Final Project"
+module: "machine-learning"
+project: "final-project"
+date: "2025-01-01"
+unit: 11.2
+---
+
+## Objective
+
+In this project, we aimed to design a neural network model for object recognition using the CIFAR-10 dataset. Object recognition is a critical task in many fields, such as autonomous vehicles, where accurate identification of objects can significantly enhance decision-making processes. The primary goal of this project is to develop a model that can correctly classify images from the CIFAR-10 dataset, which contains 60,000 color images across 10 distinct classes. These classes include categories like airplanes, automobiles, birds, cats, dogs, and more. The challenge is to design a neural network model that can generalize and correctly identify these objects from the images.
+
+## Data Preprocessing
+
+To begin with, we load the CIFAR-10 dataset, which is divided into a training set, a validation set, and a test set. We split the training data into 80% for training and 20% for validation. Then, we normalize the pixel values and one-hot encode the target labels.
+
+```python
+# Loading the CIFAR-10 dataset
+(x_train, y_train), (x_test, y_test) = cifar10.load_data()
+print("====== CIFAR10 (Original Split) ======")
+print('x_train shape:', x_train.shape)
+print('y_train shape:', y_train.shape)
+print(x_train.shape[0], 'train samples')
+print(x_test.shape[0], 'test samples')
+
+# Splitting training data into training and validation sets
+x_train, x_val, y_train, y_val = train_test_split(x_train, y_train, test_size=0.2, random_state=42, stratify=y_train)
+print("====== CIFAR10 (With Validation Split) ======")
+print('x_train shape:', x_train.shape)
+print('y_train shape:', y_train.shape)
+print(x_train.shape[0], 'train samples')
+print(x_val.shape[0], 'val samples')
+print(x_test.shape[0], 'test samples')
+
+# Normalizing pixel values from integers (0, 255) to floats (0, 1)
+x_train = x_train.astype('float32') / 255
+x_val = x_val.astype('float32') / 255
+x_test = x_test.astype('float32') / 255
+
+# One-hot encoding target variables
+y_train = utils.to_categorical(y_train, CLASS_COUNT)
+y_val = utils.to_categorical(y_val, CLASS_COUNT)
+y_test = utils.to_categorical(y_test, CLASS_COUNT)
+```
+
+## Data Distribution
+
+The dataset is balanced, meaning that each class has an equal number of images, which helps prevent bias toward one class over another. Below is the distribution of images across the training, validation, and test sets.
+
+```python
+# Visualizing the class distribution across training, validation, and test sets
+class_counts_train = np.bincount(y_train.flatten())
+class_counts_val = np.bincount(y_val.flatten())
+class_counts_test = np.bincount(y_test.flatten())
+
+fig, axes = plt.subplots(1, 3, figsize=(15, 5))
+
+# Training Class Distribution
+axes[0].bar(CLASS_NAMES, class_counts_train, color=colors, edgecolor='black')
+axes[0].set_title('Training Set')
+axes[0].set_ylabel('Number of Images')
+axes[0].tick_params(axis='x', rotation=45)
+
+# Validation Class Distribution
+axes[1].bar(CLASS_NAMES, class_counts_val, color=colors, edgecolor='black')
+axes[1].set_title('Validation Set')
+axes[1].set_xlabel('Class')
+axes[1].tick_params(axis='x', rotation=45)
+
+# Testing Class Distribution
+axes[2].bar(CLASS_NAMES, class_counts_test, color=colors, edgecolor='black')
+axes[2].set_title('Test Set')
+axes[2].tick_params(axis='x', rotation=45)
+
+fig.suptitle('Class Distribution in CIFAR-10 across sets')
+
+plt.tight_layout(rect=[0, 0.03, 1, 0.95])
+plt.show()
+```
+
+## Model Architecture
+
+For this project, we utilize a Convolutional Neural Network (CNN), which is well-suited for image classification tasks. The architecture consists of two convolutional blocks followed by a classification block. The convolutional layers apply filters to detect local patterns in the image, such as edges and textures, while the dense layers help in making the final classification based on the learned features.
+
+```python
+# Building the model
+model = Sequential(name="CIFAR10_CNN_v1")
+
+# First convolutional block
+model.add(Conv2D(32, (3, 3), padding='same', activation='relu', input_shape=(32, 32, 3)))
+model.add(BatchNormalization())
+model.add(MaxPool2D(pool_size=(2, 2)))
+model.add(Dropout(0.25))
+
+# Second convolutional block
+model.add(Conv2D(64, (3, 3), padding='same', activation='relu'))
+model.add(BatchNormalization())
+model.add(MaxPool2D(pool_size=(2, 2)))
+model.add(Dropout(0.25))
+
+# Flatten and Dense layers for classification
+model.add(Flatten())
+model.add(Dense(256, activation='relu'))
+model.add(Dropout(0.5))
+model.add(Dense(10, activation='softmax'))
+
+model.summary()
+```
+
+### Activation Function and Regularization
+
+The ReLU (Rectified Linear Unit) activation function is used in the convolutional layers, which helps the model learn more complex patterns without saturating the gradients during backpropagation. Batch normalization is used to stabilize training, while dropout is applied to prevent overfitting.
+
+### Loss Function and Optimization
+
+We use Categorical Cross-Entropy as the loss function for multi-class classification, and the Adam optimizer is used to minimize the loss.
+
+```python
+# Compiling the model with Adam optimizer and Categorical Cross-Entropy loss function
+model.compile(optimizer='adam', 
+              loss='categorical_crossentropy', 
+              metrics=['accuracy'])
+```
+
+### Training the Model
+
+The model is trained for up to 100 epochs with early stopping applied if the validation loss does not improve for 8 consecutive epochs. 
+The training process involves monitoring both the training and validation losses to ensure that the model doesn't overfit.
+
+```py
+# Early stopping callback to stop training if validation loss doesn't improve
+early_stopping = EarlyStopping(
+    monitor='val_loss', 
+    patience=8,         
+    restore_best_weights=True 
+)
+
+# Training the model
+history = model.fit(x_train, y_train,
+    batch_size=32,
+    epochs=100,
+    validation_data=(x_val, y_val),
+    shuffle=True,
+    callbacks=[early_stopping]
+)
+```
+
+###  Training and Validation Plots
+
+We plot the training and validation accuracy and loss to visualize the model's performance during training.
+
+```py
+# Plotting accuracy and loss curves for training and validation sets
+fig, axs = plt.subplots(1, 2, figsize=(15, 5)) 
+
+axs[0].plot(history.history['accuracy']) 
+axs[0].plot(history.history['val_accuracy']) 
+axs[0].set_title('Accuracy')
+axs[0].set_ylabel('Accuracy') 
+axs[0].set_xlabel('Epoch')
+axs[0].legend(['train', 'validate'], loc='upper left')
+
+axs[1].plot(history.history['loss']) 
+axs[1].plot(history.history['val_loss']) 
+axs[1].set_title('Loss')
+axs[1].set_ylabel('Loss') 
+axs[1].set_xlabel('Epoch')
+axs[1].legend(['train', 'validate'], loc='upper left')
+plt.show()
+```
+
+### Evaluation and Results
+
+After training, we evaluate the model on the test set and generate a classification report along with a confusion matrix to better understand the model's performance.
+
+```py
+# Evaluate the model on the test set
+scores = model.evaluate(x_test, y_test, verbose=1)
+print('Test loss:', scores[0])
+print('Test accuracy:', scores[1])
+
+# Generating classification report
+predictions = np.argmax(model.predict(x_test), axis=-1)
+y_test_multiclass = np.argmax(y_test, axis=-1)
+
+print(classification_report(y_test_multiclass, predictions))
+
+# Confusion matrix
+confusion_matrix(y_test_multiclass, predictions)
+```
+### Visualizing Predictions
+We randomly select a test image, display it, and compare the real label with the predicted label.
+
+```py
+# Visualizing a random test image and comparing real and predicted labels
+from random import randint
+
+idx = randint(0, len(x_test)-1)
+
+test_image = x_test[idx]
+
+plt.imshow(test_image)
+plt.show()
+
+print(f"Real Label: {CLASS_NAMES[y_test_multiclass[idx]]}")
+print(f"Predicted Label: {CLASS_NAMES[predictions[idx]]}")
+```
+
+
+### Conclusion
+The model achieved an accuracy of 76% on the test set, demonstrating its capability to classify images correctly. The confusion matrix and classification report further help identify areas where the model can improve. This project highlights the effectiveness of CNNs for image classification tasks and the importance of model regularization and validation during training.
