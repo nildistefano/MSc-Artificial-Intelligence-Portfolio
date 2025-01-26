@@ -7,72 +7,138 @@ date: "2025-01-01"
 unit: 7
 ---
 
-Check this code out!
+# Perceptron Activities
+
+## Single Perceptron
+
+This exercise demonstrates the basic operations of a single perceptron: calculating the dot product as a weighted sum of inputs and passing it through a step function as the activation mechanism.
 
 ```py
+# Importing NumPy
 import numpy as np
 
-def sum_func(inputs, weights):
-    return inputs.dot(weights)
+# Exercise 1: Dot Product and Step Function
+print("---- Exercise 1 ----")
 
+# Inputs and weights for the perceptron
+# Inputs represent features, and weights represent their importance.
+inputs = np.array([45, 25])
+weights = np.array([0.7, 0.1])
+
+# Dot product simulates the sum function in a perceptron
+sum_func = np.dot(inputs, weights)
+
+# Step function simulates the perceptron's activation function
+# If the weighted sum is greater than or equal to a threshold, it activates (returns 1).
 def step_function(value):
     return 1 if value >= 1 else 0
 
-def cal_output(instance, weights):
-    return step_function(instance.dot(weights))
+result_step = step_function(sum_func)
+print(f"Sum: {sum_func}, Step Function Result: {result_step}")
+```
 
-def train(inputs, outputs, weights, learning_rate):
-    total_error_value = 1
-    while total_error_value != 0:
-        total_error_value = 0
-        for i in range(len(outputs)):
-            prediction = cal_output(inputs[i], weights)
-            error = abs(outputs[i] - prediction)
-            total_error_value += error
-            if error > 0:
-                weights += learning_rate * inputs[i] * error
-    return weights
+## Training a Perceptron (AND Operator)
 
-def sigmoid(value):
-    return 1 / (1 + np.exp(-value))
+This follow up exercise introduces training a perceptron to learn the logic of an AND gate. The weights are adjusted iteratively based on errors until the perceptron accurately models the desired behavior.
 
-def sigmoid_derivative(value):
-    return value * (1 - value)
+```py
+# Exercise 2: Training a Perceptron
+print("\n---- Exercise 2 ----")
 
-# Exercise 1 Inputs
-inputs1 = np.array([45, 25])
-weights1 = np.array([0.7, 0.1])
-s_prob1 = sum_func(inputs1, weights1)
-step_result1 = step_function(s_prob1)
+# Inputs and expected outputs for an AND gate
+# Each row in inputs represents a data point, and outputs is the target result.
+inputs = np.array([[0, 0], [0, 1], [1, 0], [1, 1]])
+outputs = np.array([0, 0, 0, 1])  # AND gate logic
 
-weights1 = np.array([-0.7, 0.1])
-s_prob2 = sum_func(inputs1, weights1)
-step_result2 = step_function(s_prob2)
-
-# Exercise 2 Inputs
-inputs2 = np.array([[0, 0], [0, 1], [1, 0], [1, 1]])
-outputs2 = np.array([0, 0, 0, 1])
-weights2 = np.array([0.0, 0.0])
+# Initialize weights to zero and set a learning rate
+weights = np.array([0.0, 0.0])
 learning_rate = 0.1
 
-weights2 = train(inputs2, outputs2, weights2, learning_rate)
+# Perceptron training function
+# Adjusts weights based on errors to learn the AND gate logic.
+def train_perceptron():
+    global weights
+    for _ in range(10):  # Fixed number of epochs (iterations over the data)
+        total_error = 0
+        for i in range(len(outputs)):
+            # Calculate the perceptron's prediction
+            prediction = step_function(np.dot(inputs[i], weights))
 
-# Exercise 3 Inputs
-inputs3 = np.array([[0, 0], [0, 1], [1, 0], [1, 1]])
-outputs3 = np.array([[0], [1], [1], [0]])
-weights_0 = np.array([[-0.424, -0.740, -0.961], [0.358, -0.577, -0.469]])
-weights_1 = np.array([[-0.017], [-0.893], [0.148]])
+            # Error is the difference between the target and the prediction
+            error = outputs[i] - prediction
 
-input_layer = inputs3
-hidden_layer = sigmoid(np.dot(input_layer, weights_0))
-output_layer = sigmoid(np.dot(hidden_layer, weights_1))
-error_output_layer = outputs3 - output_layer
+            # Update weights based on the error and learning rate
+            weights += learning_rate * inputs[i] * error
 
-average_error = np.mean(abs(error_output_layer))
+            # Track total error to decide when to stop
+            total_error += abs(error)
 
-delta_output = error_output_layer * sigmoid_derivative(output_layer)
-delta_hidden_layer = np.dot(delta_output, weights_1.T) * sigmoid_derivative(hidden_layer)
+        # Stop early if the perceptron has no errors
+        if total_error == 0:
+            break
 
-weights_1 += np.dot(hidden_layer.T, delta_output) * learning_rate
-weights_0 += np.dot(input_layer.T, delta_hidden_layer) * learning_rate
+    print(f"Trained Weights: {weights}")
+
+train_perceptron()
+```
+
+## Multilayer Perceptron
+
+Finally, this experiment implements a simple artificial neural network to solve the XOR problem, which cannot be addressed by a single perceptron. The network uses a sigmoid activation function, forward propagation, and backpropagation to adjust weights over multiple epochs.
+
+```py
+# Exercise 3: Simple Artificial Neural Network
+print("\n---- Exercise 3 ----")
+
+# Define sigmoid activation function
+# Maps any real value into the range (0, 1), enabling the ANN to handle non-linear problems.
+def sigmoid(x):
+    return 1 / (1 + np.exp(-x))
+
+# Derivative of sigmoid (used during backpropagation)
+def sigmoid_derivative(x):
+    return x * (1 - x)
+
+# Inputs and outputs for XOR gate
+# XOR cannot be solved by a single perceptron, hence a neural network is needed.
+inputs = np.array([[0, 0], [0, 1], [1, 0], [1, 1]])
+outputs = np.array([[0], [1], [1], [0]])
+
+# Initialize weights randomly for input-to-hidden and hidden-to-output layers
+weights_0 = np.random.uniform(-1, 1, (2, 3))  # 2 inputs, 3 hidden neurons
+weights_1 = np.random.uniform(-1, 1, (3, 1))  # 3 hidden neurons, 1 output
+
+# Learning rate controls the size of weight updates
+learning_rate = 0.1
+
+# Train the neural network
+for epoch in range(10000):  # Number of training iterations
+    # Forward pass: compute the outputs of each layer
+    hidden_layer_input = np.dot(inputs, weights_0)
+    hidden_layer_output = sigmoid(hidden_layer_input)
+    final_layer_input = np.dot(hidden_layer_output, weights_1)
+    final_output = sigmoid(final_layer_input)
+
+    # Calculate error at the output layer
+    error = outputs - final_output
+
+    # Backpropagation: compute adjustments for weights
+    final_output_delta = error * sigmoid_derivative(final_output)
+    hidden_layer_error = final_output_delta.dot(weights_1.T)
+    hidden_layer_delta = hidden_layer_error * sigmoid_derivative(hidden_layer_output)
+
+    # Update weights based on deltas
+    weights_1 += hidden_layer_output.T.dot(final_output_delta) * learning_rate
+    weights_0 += inputs.T.dot(hidden_layer_delta) * learning_rate
+
+    # Optional: Print the error every 1000 epochs for monitoring
+    if epoch % 1000 == 0:
+        print(f"Epoch {epoch}, Error: {np.mean(np.abs(error))}")
+
+# Final predictions after training
+print("\nFinal Predictions:")
+for i, input_val in enumerate(inputs):
+    hidden = sigmoid(np.dot(input_val, weights_0))
+    output = sigmoid(np.dot(hidden, weights_1))
+    print(f"Input: {input_val}, Predicted: {output.round()}")
 ```
