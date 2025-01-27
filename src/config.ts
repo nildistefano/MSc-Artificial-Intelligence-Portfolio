@@ -161,18 +161,23 @@ export const modulesPageContent: ModulesPageContent = {
       slug: "machine-learning",
       year: "2024",
       month: "October",
-      projects: [
-        {
-          title: "Project 1",
-          description: "Description of Project 1",
-          link: "https://example.com/project1",
-        },
-        {
-          title: "Project 2",
-          description: "Description of Project 2",
-          link: "https://example.com/project2",
-        },
-      ],
+      projects: [],
+    },
+    {
+      title: "Numerical Analysis",
+      description: "",
+      slug: "numerical-analysis",
+      year: "2024",
+      month: "August",
+      projects: [],
+    },
+    {
+      title: "Understanding Artifical Intelligence",
+      description: "",
+      slug: "numerical-analysis",
+      year: "2024",
+      month: "March",
+      projects: [],
     }
   ],
 };

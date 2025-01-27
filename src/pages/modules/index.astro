@@ -10,9 +10,9 @@ const basePath = '/MSc-Artificial-Intelligence-Portfolio';
 <Layout seo={modulesPageContent.seo}>
   <section class="mt-10">
     <h1 class="font-bold text-3xl mb-1">Modules</h1>
-    <p class="mb-14">{modulesPageContent.subtitle}</p>
+    <h2 class="text-xl text-gray-400 mb-6">{modulesPageContent.subtitle}</h2>
 
-    <div class="flex flex-col gap-6">
+    <div class="mt-10 flex flex-col gap-6">
       {modules.map((module) => (
         <a
           href={`${basePath}/modules/${module.slug}`}
@@ -26,3 +26,4 @@ const basePath = '/MSc-Artificial-Intelligence-Portfolio';
     </div>
   </section>
 </Layout>
+

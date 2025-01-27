@@ -34,21 +34,23 @@ if (!module) {
 
 ---
 
-<Layout seo={{ title: module.title, description: module.description, image: ""}}>
-    <section class="mt-10">
-        <h1 class="font-bold text-3xl mb-1">{module.title}</h1>
-    
-        <div class="grid grid-cols-1 gap-6">
-          {projects.map((project: { data: { module: any; project: any; title: unknown; description: unknown; unit: unknown; }; }) => (
-            <a
-              href={`${basePath}/modules/${project.data.module}/${project.data.project}`}
-              class="block border border-white rounded-lg shadow hover:shadow-md transition-shadow p-4 text-gray-200"
-            >
-              <h3 class="font-medium text-lg">{project.data.title}</h3>
-              <p class="text-sm mt-2">{project.data.description}</p>
-              <p class="text-sm font-semibold mt-4 text-gray-400">Unit {project.data.unit}</p>
-            </a>
-          ))}
-        </div>
-      </section>
+<Layout seo={{ title: module.title, description: module.description, image: "" }}>
+  <section class="mt-10">
+    <h1 class="font-bold text-3xl mb-1">{module.title}</h1>
+    <h2 class="text-xl text-gray-400 mb-6">Artifacts developed during this module.</h2>
+
+    <div class="mt-10 grid grid-cols-1 gap-6">
+      {projects.map((project: { data: { module: any; project: any; title: unknown; description: unknown; unit: unknown; }; }) => (
+        <a
+          href={`${basePath}/modules/${project.data.module}/${project.data.project}`}
+          class="block border border-white rounded-lg shadow hover:shadow-md transition-shadow p-4 text-gray-200"
+        >
+          <h3 class="font-medium text-lg">{project.data.title}</h3>
+          <p class="text-sm mt-2">{project.data.description}</p>
+          <p class="text-sm font-semibold mt-4 text-gray-400">Unit {project.data.unit}</p>
+        </a>
+      ))}
+    </div>
+  </section>
 </Layout>
+
