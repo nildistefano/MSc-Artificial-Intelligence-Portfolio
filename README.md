@@ -1,8 +1,8 @@
 ## Submission Details
 
-- **Branch Used for Deployment**: The `machine-learning` branch was created **before the deadline (27/01/2025)** and is the one used for deployment, as configured in the [`deploy.yml`](https://github.com/nildistefano/MSc-Artificial-Intelligence-Portfolio/blob/main/.github/workflows/deploy.yml) file. 
+- **Branch Used for Deployment**: The `machine-learning` branch was created **before the deadline (27/01/2025)** and is the one used for deployment, as configured in the [`deploy.yml`](https://github.com/nildistefano/MSc-Artificial-Intelligence-Portfolio/blob/machine-learning/.github/workflows/deploy.yml) file. 
 - **Deadline**: No changes were made after the submission deadline. All commits and updates were completed prior to the deadline.
-- **Deployment**: The portfolio is deployed on GitHub Pages and is available at https://nildistefano.github.io/MSc-Artificial-Intelligence-Portfolio/. The content is deployed from the `gh-pages` branch, following the deployment instructions in the [`deploy.yml`](https://github.com/nildistefano/MSc-Artificial-Intelligence-Portfolio/blob/main/.github/workflows/deploy.yml) file.
+- **Deployment**: The portfolio is deployed on GitHub Pages and is available at https://nildistefano.github.io/MSc-Artificial-Intelligence-Portfolio/. The content is deployed from the `gh-pages` branch, following the deployment instructions in the [`deploy.yml`](https://github.com/nildistefano/MSc-Artificial-Intelligence-Portfolio/blob/machine-learning/.github/workflows/deploy.yml) file.
 
 ## Workflow and Versioning
 
