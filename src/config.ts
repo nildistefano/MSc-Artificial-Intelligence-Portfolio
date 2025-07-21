@@ -156,6 +156,14 @@ export const modulesPageContent: ModulesPageContent = {
   subtitle: "Explore the modules in detail.",
   modules: [
     {
+      title: "Research Methods and Professional Practice",
+      description: "Research Methods and Professional Practice explores the foundations of academic research within the field of computing. The module introduces key principles of research design, data collection, and analysis, alongside professional, legal, ethical, and social considerations relevant to technology projects.",
+      slug: "research-methods",
+      year: "2025",
+      month: "March",
+      projects: [],
+    },
+    {
       title: "Machine Learning",
       description: "This Machine Learning module provides a practical, hands-on introduction to machine learning concepts, algorithms, and frameworks, emphasizing real-world data analytics, systematic implementation, and the ethical, professional, and collaborative aspects of deploying machine learning solutions.",
       slug: "machine-learning",
